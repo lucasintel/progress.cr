@@ -155,9 +155,10 @@ progress.reset</code></pre>
 <ul><li><code>{label}</code></li><li><code>{bar}</code> — The progress bar.</li><li><code>{total}</code></li><li><code>{step}</code> — Current step.</li><li><code>{percent}</code> — Formatted percent (e.g. 100%)</li><li><code>{elapsed}</code> — Elapsed time (e.g. 00:05)</li></ul>
 
 <p>By default, progress.cr tries to both humanize and format <code>total</code> and <code>step</code>.
-For instance, <code>10_485_760</code> is printed as <code>10.0 MiB</code>. You might want to
-customize <code>total_mask</code> and <code>step_mask</code>. To opt-out this behaviour, set
-<code>humanize_bytes</code> to false.</p>
+For instance, <code>10_485_760</code> would printed as <code>10.0 MiB</code>. You might want to
+customize <code>total_mask</code> and <code>step_mask</code>.</p>
+
+<p>To opt-out this behaviour, set <code>humanize_bytes</code> to false.</p>
 
 <h2><a id="examples" class="anchor" href="#examples">
   <svg class="octicon-link" aria-hidden="true">
