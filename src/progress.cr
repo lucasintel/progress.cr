@@ -5,23 +5,25 @@ class Progress
   MiB = 1024 * KiB
   GiB = 1024 * MiB
 
-  DEFAULT_TEMPLATE = " + {label} {bar} {step} {percent} [{elapsed}]"
+  DEFAULT_TEMPLATE = "{label} {bar} {step} {percent} [{elapsed}]"
   TEMPLATE_REGEX   = /{label}|{bar}|{total}|{step}|{percent}|{elapsed}/
 
   LEFT_BORDER_CHAR  = "["
   FILLED_CHAR       = "="
   EMPTY_CHAR        = " "
   RIGHT_BORDER_CHAR = "]"
-  TOTAL_MASK        = "%5.1f MiB"
-  STEP_MASK         = "%5.1f MiB"
+  TOTAL_MASK        = "%5.1f"
+  STEP_MASK         = "%5.1f"
   PERCENT_MASK      = "%4.f%%"
   CARRIAGE_RETURN   = '\r'
   NEW_LINE          = '\n'
 
+  alias Num = Int32 | UInt32 | Int64 | UInt64 | Float32 | Float64
+
   def initialize(
-    @width : Number = 100,
-    @total : Number = 100,
-    @step : Number = 0,
+    @width : Num = 100_u64,
+    @total : Num = 100_u64,
+    @step : Num = 0_u64,
     @left_border_char : String = LEFT_BORDER_CHAR,
     @filled_char : String = FILLED_CHAR,
     @empty_char : String = EMPTY_CHAR,
@@ -31,30 +33,38 @@ class Progress
     @total_mask : String = TOTAL_MASK,
     @step_mask : String = STEP_MASK,
     @percent_mask : String = PERCENT_MASK,
-    @stream = STDOUT
+    @humanize_bytes : Bool = true,
+    @stream : IO::FileDescriptor = STDOUT
   )
     @start_at = Time.monotonic
-    @range = 0..@total
   end
 
   def init : Nil
-    @step = 0
+    @start_at = Time.monotonic
     render
   end
 
   def reset : Nil
+    @step = 0_u64
     init
   end
 
-  def tick(step : Number) : Nil
-    @step += step
-    render
+  def tick(step : Num = 1_u64) : Nil
+    new_step = @step + step
+    set(new_step)
   end
 
-  def set(step : Number) : Nil
-    raise OverflowError.new unless @range.includes?(step)
+  def set(step : Num) : Nil
+    new_step =
+      if step > @total
+        @total
+      elsif step < 0
+        0_u64
+      else
+        step
+      end
 
-    @step = step
+    @step = new_step
     render
   end
 
@@ -85,16 +95,14 @@ class Progress
 
   private def render : Nil
     percent = @step / @total
-    filled_int = (@width * percent).to_i
-    empty_int = (@width - filled_int).to_i
 
-    formatted_percent = @percent_mask % (percent * 100)
-    formatted_step = @step_mask % (@step / MiB)
+    bar_filled_integer = (@width * percent).to_i
+    bar_empty_integer = (@width - bar_filled_integer).to_i
 
     bar = String.build do |str|
       str << @left_border_char
-      str << @filled_char * filled_int
-      str << @empty_char * empty_int
+      str << @filled_char * bar_filled_integer
+      str << @empty_char * bar_empty_integer
       str << @right_border_char
     end
 
@@ -103,9 +111,9 @@ class Progress
       {
         "{label}":   @label,
         "{bar}":     bar,
-        "{total}":   @total,
-        "{step}":    formatted_step,
-        "{percent}": formatted_percent,
+        "{total}":   format_bytes(@total, @total_mask),
+        "{step}":    format_bytes(@step, @step_mask),
+        "{percent}": format_percent(percent),
         "{elapsed}": elapsed,
       }
     )
@@ -114,5 +122,31 @@ class Progress
     @stream.print(CARRIAGE_RETURN, computed)
     @stream.flush
     @stream.print(NEW_LINE) if done?
+  end
+
+  private def format_bytes(bytes : Num, mask : String) : String
+    return bytes.to_s unless @humanize_bytes
+
+    denominator, suffix = humanize_factor
+
+    String.build do |str|
+      str << mask % (bytes / denominator)
+      str << suffix
+    end
+  end
+
+  private def format_percent(percent : Num) : String
+    @percent_mask % (percent * 100)
+  end
+
+  private def humanize_factor : Tuple(Num, String?)
+    @humanize_factor ||=
+      if @total < MiB
+        {KiB, " KiB"}
+      elsif @total > MiB && @total < GiB
+        {MiB, " MiB"}
+      else
+        {GiB, " GiB"}
+      end
   end
 end
