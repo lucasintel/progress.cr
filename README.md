@@ -68,9 +68,10 @@ progress.reset
  - `{elapsed}` — Elapsed time (e.g. 00:05)
 
 By default, progress.cr tries to both humanize and format `total` and `step`.
-For instance, `10_485_760` is printed as `10.0 MiB`. You might want to
-customize `total_mask` and `step_mask`. To opt-out this behaviour, set
-`humanize_bytes` to false.
+For instance, `10_485_760` would printed as `10.0 MiB`. You might want to
+customize `total_mask` and `step_mask`.
+
+To opt-out this behaviour, set `humanize_bytes` to false.
 
 ## Examples
 
