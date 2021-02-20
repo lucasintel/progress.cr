@@ -24,21 +24,22 @@ Simple and customizable progress bar for Crystal.
 require "progress"
 
 # This is the default configuration; all arguments are optional.
-progress =
-   Progress.new(
-     width: 100,
-     total: 100,
-     step: 0,
-     left_border_char: "[",
-     filled_char: "=",
-     empty_char: " ",
-     right_border_char: "]",
-     label: "Neutron Star.pdf",
-     template: "{label} {bar} {step} {percent} [{elapsed}]",
-     total_mask: "%5.1f MiB",
-     step_mask: "%5.1f MiB",
-     percent_mask: "%4.f%%"
-   )
+progress = Progress.new(
+  width: 100,
+  total: 100,
+  step: 0,
+  left_border_char: "[",
+  filled_char: "=",
+  empty_char: " ",
+  right_border_char: "]",
+  label: "Neutron Star.pdf",
+  template: "{label} {bar} {step} {percent} [{elapsed}]",
+  percent_mask: "%4.f%%",
+  total_mask: "%5.1f",
+  step_mask: "%5.1f",
+  humanize_bytes: true,
+  stream: STDOUT
+ )
 
 # Optional: print an empty progress bar.
 progress.init
@@ -65,6 +66,11 @@ progress.reset
  - `{step}` — Current step.
  - `{percent}` — Formatted percent (e.g. 100%)
  - `{elapsed}` — Elapsed time (e.g. 00:05)
+
+By default, progress.cr tries to both humanize and format `total` and `step`.
+For instance, `10_485_760` is printed as `10.0 MiB`. You might want to
+customize `total_mask` and `step_mask`. To opt-out this behaviour, set
+`humanize_bytes` to false.
 
 ## Examples
 
