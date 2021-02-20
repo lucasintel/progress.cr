@@ -21,35 +21,6 @@ describe Progress do
     end
   end
 
-  describe "#reset" do
-    it "resets the progress bar state" do
-      test_stream = File.tempfile(Random::Secure.hex)
-      template = "{bar} {total} {step} {percent}"
-      capacity = 10_485_760
-
-      progress = Progress.new(
-        stream: test_stream,
-        total: capacity,
-        template: template,
-        width: 10,
-        step: capacity
-      )
-
-      progress.init
-
-      stream_content = File.read(test_stream.path)
-      stream_content.should eq("\r[==========]  10.0 MiB  10.0 MiB  100%")
-
-      progress.reset
-
-      stream_content = File.read(test_stream.path)
-      stream_content.should eq(
-        "\r[==========]  10.0 MiB  10.0 MiB  100%\n" \
-        "\r[          ]  10.0 MiB   0.0 MiB    0%"
-      )
-    end
-  end
-
   describe "#tick" do
     it "ticks the progress bar" do
       test_stream = File.tempfile(Random::Secure.hex)

@@ -39,44 +39,58 @@ class Progress
     @start_at = Time.monotonic
   end
 
+  # Initializes the timer and render the progress bar.
   def init : Nil
     @start_at = Time.monotonic
     render
   end
 
-  def reset : Nil
-    @step = 0_u64
-    init
-  end
-
-  def tick(step : Num = 1_u64) : Nil
+  # Ticks the progress bar by *step*. The step can be either positive or
+  # negative.
+  #
+  # ```
+  # progress = Progress.new(total: 10)
+  # progress.tick(10)
+  # progress.done? # => true
+  # ```
+  def tick(step : Num) : Nil
     new_step = @step + step
     set(new_step)
   end
 
+  # Sets the progress bar *step* directly. If the value overflows the progress
+  # bar capacity, the remaining will be ignored.
+  #
+  # ```
+  # progress = Progress.new(total: 10)
+  # progress.set(10)
+  # progress.done? # => true
+  # ```
   def set(step : Num) : Nil
-    new_step =
-      if step > @total
-        @total
-      elsif step < 0
-        0_u64
-      else
-        step
-      end
+    new_step = if step > @total
+                 @total
+               elsif step < 0
+                 0_u64
+               else
+                 step
+               end
 
     @step = new_step
     render
   end
 
-  def elapsed : String
+  # Returns the elapsed time since the progress bar was last initialized.
+  #
+  # ```
+  # progress = Progress.new
+  # sleep 5
+  # progress.elapsed_time # => 00:05
+  # ```
+  def elapsed_time : String
     time = Time.monotonic - @start_at
+    return time.to_s if time.hours.abs > 0
 
     String.build do |str|
-      if time.hours.abs > 0
-        str << '0' if time.hours < 10
-        str << ':'
-      end
-
       str << '0' if time.minutes < 10
       str << time.minutes.abs
       str << ':'
@@ -85,10 +99,13 @@ class Progress
     end
   end
 
+  # Returns true if the progress bar is running, else false. This method has
+  # no effect right now, as it always return true.
   def started? : Bool
     @step > 0
   end
 
+  # Returns true if the progress bar is done, else false.
   def done? : Bool
     @total == @step
   end
@@ -114,7 +131,7 @@ class Progress
         "{total}":   format_bytes(@total, @total_mask),
         "{step}":    format_bytes(@step, @step_mask),
         "{percent}": format_percent(percent),
-        "{elapsed}": elapsed,
+        "{elapsed}": elapsed_time,
       }
     )
 
