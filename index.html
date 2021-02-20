@@ -57,8 +57,8 @@
       
         <ul>
   
-  <li class=" " data-id="Progress/Progress/OverflowError" data-name="progress::overflowerror">
-      <a href="Progress/OverflowError.html">OverflowError</a>
+  <li class=" " data-id="Progress/Progress/Num" data-name="progress::num">
+      <a href="Progress/Num.html">Num</a>
       
     </li>
   
@@ -113,21 +113,22 @@
 <pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;progress&quot;</span>
 
 <span class="c"># This is the default configuration; all arguments are optional.</span>
-progress <span class="o">=</span>
-   <span class="t">Progress</span>.<span class="k">new</span>(
-     width: <span class="n">100</span>,
-     total: <span class="n">100</span>,
-     step: <span class="n">0</span>,
-     left_border_char: <span class="s">&quot;[&quot;</span>,
-     filled_char: <span class="s">&quot;=&quot;</span>,
-     empty_char: <span class="s">&quot; &quot;</span>,
-     right_border_char: <span class="s">&quot;]&quot;</span>,
-     label: <span class="s">&quot;Neutron Star.pdf&quot;</span>,
-     template: <span class="s">&quot;{label} {bar} {step} {percent} [{elapsed}]&quot;</span>,
-     total_mask: <span class="s">&quot;%5.1f MiB&quot;</span>,
-     step_mask: <span class="s">&quot;%5.1f MiB&quot;</span>,
-     percent_mask: <span class="s">&quot;%4.f%%&quot;</span>
-   )
+progress <span class="o">=</span> <span class="t">Progress</span>.<span class="k">new</span>(
+  width: <span class="n">100</span>,
+  total: <span class="n">100</span>,
+  step: <span class="n">0</span>,
+  left_border_char: <span class="s">&quot;[&quot;</span>,
+  filled_char: <span class="s">&quot;=&quot;</span>,
+  empty_char: <span class="s">&quot; &quot;</span>,
+  right_border_char: <span class="s">&quot;]&quot;</span>,
+  label: <span class="s">&quot;Neutron Star.pdf&quot;</span>,
+  template: <span class="s">&quot;{label} {bar} {step} {percent} [{elapsed}]&quot;</span>,
+  percent_mask: <span class="s">&quot;%4.f%%&quot;</span>,
+  total_mask: <span class="s">&quot;%5.1f&quot;</span>,
+  step_mask: <span class="s">&quot;%5.1f&quot;</span>,
+  humanize_bytes: <span class="n">true</span>,
+  stream: <span class="t">STDOUT</span>
+ )
 
 <span class="c"># Optional: print an empty progress bar.</span>
 progress.init
@@ -152,6 +153,11 @@ progress.reset</code></pre>
 </a>Template options</h3>
 
 <ul><li><code>{label}</code></li><li><code>{bar}</code> — The progress bar.</li><li><code>{total}</code></li><li><code>{step}</code> — Current step.</li><li><code>{percent}</code> — Formatted percent (e.g. 100%)</li><li><code>{elapsed}</code> — Elapsed time (e.g. 00:05)</li></ul>
+
+<p>By default, progress.cr tries to both humanize and format <code>total</code> and <code>step</code>.
+For instance, <code>10_485_760</code> is printed as <code>10.0 MiB</code>. You might want to
+customize <code>total_mask</code> and <code>step_mask</code>. To opt-out this behaviour, set
+<code>humanize_bytes</code> to false.</p>
 
 <h2><a id="examples" class="anchor" href="#examples">
   <svg class="octicon-link" aria-hidden="true">

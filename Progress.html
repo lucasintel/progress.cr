@@ -57,8 +57,8 @@
       
         <ul>
   
-  <li class=" " data-id="Progress/Progress/OverflowError" data-name="progress::overflowerror">
-      <a href="Progress/OverflowError.html">OverflowError</a>
+  <li class=" " data-id="Progress/Progress/Num" data-name="progress::num">
+      <a href="Progress/Num.html">Num</a>
       
     </li>
   
@@ -129,7 +129,7 @@
       
     
       <dt class="entry-const" id="DEFAULT_TEMPLATE">
-        <strong>DEFAULT_TEMPLATE</strong> = <code><span class="s">&quot; + {label} {bar} {step} {percent} [{elapsed}]&quot;</span></code>
+        <strong>DEFAULT_TEMPLATE</strong> = <code><span class="s">&quot;{label} {bar} {step} {percent} [{elapsed}]&quot;</span></code>
       </dt>
       
     
@@ -179,7 +179,7 @@
       
     
       <dt class="entry-const" id="STEP_MASK">
-        <strong>STEP_MASK</strong> = <code><span class="s">&quot;%5.1f MiB&quot;</span></code>
+        <strong>STEP_MASK</strong> = <code><span class="s">&quot;%5.1f&quot;</span></code>
       </dt>
       
     
@@ -189,12 +189,12 @@
       
     
       <dt class="entry-const" id="TOTAL_MASK">
-        <strong>TOTAL_MASK</strong> = <code><span class="s">&quot;%5.1f MiB&quot;</span></code>
+        <strong>TOTAL_MASK</strong> = <code><span class="s">&quot;%5.1f&quot;</span></code>
       </dt>
       
     
       <dt class="entry-const" id="VERSION">
-        <strong>VERSION</strong> = <code><span class="s">&quot;0.1.0&quot;</span></code>
+        <strong>VERSION</strong> = <code><span class="s">&quot;0.1.1&quot;</span></code>
       </dt>
       
     
@@ -213,7 +213,7 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new(width:Number=100,total:Number=100,step:Number=0,left_border_char:String=LEFT_BORDER_CHAR,filled_char:String=FILLED_CHAR,empty_char:String=EMPTY_CHAR,right_border_char:String=RIGHT_BORDER_CHAR,label:String=&quot;&quot;,template:String=DEFAULT_TEMPLATE,total_mask:String=TOTAL_MASK,step_mask:String=STEP_MASK,percent_mask:String=PERCENT_MASK)-class-method" class="signature"><strong>.new</strong>(width : Number = <span class="n">100</span>, total : Number = <span class="n">100</span>, step : Number = <span class="n">0</span>, left_border_char : String = <span class="t">LEFT_BORDER_CHAR</span>, filled_char : String = <span class="t">FILLED_CHAR</span>, empty_char : String = <span class="t">EMPTY_CHAR</span>, right_border_char : String = <span class="t">RIGHT_BORDER_CHAR</span>, label : String = <span class="s">&quot;&quot;</span>, template : String = <span class="t">DEFAULT_TEMPLATE</span>, total_mask : String = <span class="t">TOTAL_MASK</span>, step_mask : String = <span class="t">STEP_MASK</span>, percent_mask : String = <span class="t">PERCENT_MASK</span>)</a>
+        <a href="#new(width:Num=100_u64,total:Num=100_u64,step:Num=0_u64,left_border_char:String=LEFT_BORDER_CHAR,filled_char:String=FILLED_CHAR,empty_char:String=EMPTY_CHAR,right_border_char:String=RIGHT_BORDER_CHAR,label:String=&quot;&quot;,template:String=DEFAULT_TEMPLATE,total_mask:String=TOTAL_MASK,step_mask:String=STEP_MASK,percent_mask:String=PERCENT_MASK,humanize_bytes:Bool=true,stream:IO::FileDescriptor=STDOUT)-class-method" class="signature"><strong>.new</strong>(width : Num = <span class="n">100_u64</span>, total : Num = <span class="n">100_u64</span>, step : Num = <span class="n">0_u64</span>, left_border_char : String = <span class="t">LEFT_BORDER_CHAR</span>, filled_char : String = <span class="t">FILLED_CHAR</span>, empty_char : String = <span class="t">EMPTY_CHAR</span>, right_border_char : String = <span class="t">RIGHT_BORDER_CHAR</span>, label : String = <span class="s">&quot;&quot;</span>, template : String = <span class="t">DEFAULT_TEMPLATE</span>, total_mask : String = <span class="t">TOTAL_MASK</span>, step_mask : String = <span class="t">STEP_MASK</span>, percent_mask : String = <span class="t">PERCENT_MASK</span>, humanize_bytes : Bool = <span class="n">true</span>, stream : IO::FileDescriptor = <span class="t">STDOUT</span>)</a>
         
       </li>
     
@@ -234,37 +234,37 @@
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#done?-instance-method" class="signature"><strong>#done?</strong></a>
+        <a href="#done?:Bool-instance-method" class="signature"><strong>#done?</strong> : Bool</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#elapsed-instance-method" class="signature"><strong>#elapsed</strong></a>
+        <a href="#elapsed:String-instance-method" class="signature"><strong>#elapsed</strong> : String</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#init-instance-method" class="signature"><strong>#init</strong></a>
+        <a href="#init:Nil-instance-method" class="signature"><strong>#init</strong> : Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#reset-instance-method" class="signature"><strong>#reset</strong></a>
+        <a href="#reset:Nil-instance-method" class="signature"><strong>#reset</strong> : Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#set(step:Number)-instance-method" class="signature"><strong>#set</strong>(step : Number)</a>
+        <a href="#set(step:Num):Nil-instance-method" class="signature"><strong>#set</strong>(step : Num) : Nil</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#started?-instance-method" class="signature"><strong>#started?</strong></a>
+        <a href="#started?:Bool-instance-method" class="signature"><strong>#started?</strong> : Bool</a>
         
       </li>
     
       <li class="entry-summary">
-        <a href="#tick(step:Number)-instance-method" class="signature"><strong>#tick</strong>(step : Number)</a>
+        <a href="#tick(step:Num=1_u64):Nil-instance-method" class="signature"><strong>#tick</strong>(step : Num = <span class="n">1_u64</span>) : Nil</a>
         
       </li>
     
@@ -308,12 +308,12 @@
     Constructor Detail
   </h2>
   
-    <div class="entry-detail" id="new(width:Number=100,total:Number=100,step:Number=0,left_border_char:String=LEFT_BORDER_CHAR,filled_char:String=FILLED_CHAR,empty_char:String=EMPTY_CHAR,right_border_char:String=RIGHT_BORDER_CHAR,label:String=&quot;&quot;,template:String=DEFAULT_TEMPLATE,total_mask:String=TOTAL_MASK,step_mask:String=STEP_MASK,percent_mask:String=PERCENT_MASK)-class-method">
+    <div class="entry-detail" id="new(width:Num=100_u64,total:Num=100_u64,step:Num=0_u64,left_border_char:String=LEFT_BORDER_CHAR,filled_char:String=FILLED_CHAR,empty_char:String=EMPTY_CHAR,right_border_char:String=RIGHT_BORDER_CHAR,label:String=&quot;&quot;,template:String=DEFAULT_TEMPLATE,total_mask:String=TOTAL_MASK,step_mask:String=STEP_MASK,percent_mask:String=PERCENT_MASK,humanize_bytes:Bool=true,stream:IO::FileDescriptor=STDOUT)-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(width : Number = <span class="n">100</span>, total : Number = <span class="n">100</span>, step : Number = <span class="n">0</span>, left_border_char : String = <span class="t">LEFT_BORDER_CHAR</span>, filled_char : String = <span class="t">FILLED_CHAR</span>, empty_char : String = <span class="t">EMPTY_CHAR</span>, right_border_char : String = <span class="t">RIGHT_BORDER_CHAR</span>, label : String = <span class="s">&quot;&quot;</span>, template : String = <span class="t">DEFAULT_TEMPLATE</span>, total_mask : String = <span class="t">TOTAL_MASK</span>, step_mask : String = <span class="t">STEP_MASK</span>, percent_mask : String = <span class="t">PERCENT_MASK</span>)
+        def self.<strong>new</strong>(width : <a href="Progress/Num.html">Num</a> = <span class="n">100_u64</span>, total : <a href="Progress/Num.html">Num</a> = <span class="n">100_u64</span>, step : <a href="Progress/Num.html">Num</a> = <span class="n">0_u64</span>, left_border_char : String = <span class="t">LEFT_BORDER_CHAR</span>, filled_char : String = <span class="t">FILLED_CHAR</span>, empty_char : String = <span class="t">EMPTY_CHAR</span>, right_border_char : String = <span class="t">RIGHT_BORDER_CHAR</span>, label : String = <span class="s">&quot;&quot;</span>, template : String = <span class="t">DEFAULT_TEMPLATE</span>, total_mask : String = <span class="t">TOTAL_MASK</span>, step_mask : String = <span class="t">STEP_MASK</span>, percent_mask : String = <span class="t">PERCENT_MASK</span>, humanize_bytes : Bool = <span class="n">true</span>, stream : IO::FileDescriptor = <span class="t">STDOUT</span>)
 
-        <a class="method-permalink" href="#new(width:Number=100,total:Number=100,step:Number=0,left_border_char:String=LEFT_BORDER_CHAR,filled_char:String=FILLED_CHAR,empty_char:String=EMPTY_CHAR,right_border_char:String=RIGHT_BORDER_CHAR,label:String=&quot;&quot;,template:String=DEFAULT_TEMPLATE,total_mask:String=TOTAL_MASK,step_mask:String=STEP_MASK,percent_mask:String=PERCENT_MASK)-class-method">#</a>
+        <a class="method-permalink" href="#new(width:Num=100_u64,total:Num=100_u64,step:Num=0_u64,left_border_char:String=LEFT_BORDER_CHAR,filled_char:String=FILLED_CHAR,empty_char:String=EMPTY_CHAR,right_border_char:String=RIGHT_BORDER_CHAR,label:String=&quot;&quot;,template:String=DEFAULT_TEMPLATE,total_mask:String=TOTAL_MASK,step_mask:String=STEP_MASK,percent_mask:String=PERCENT_MASK,humanize_bytes:Bool=true,stream:IO::FileDescriptor=STDOUT)-class-method">#</a>
       </div>
       
       <br/>
@@ -336,12 +336,12 @@
     Instance Method Detail
   </h2>
   
-    <div class="entry-detail" id="done?-instance-method">
+    <div class="entry-detail" id="done?:Bool-instance-method">
       <div class="signature">
         
-        def <strong>done?</strong>
+        def <strong>done?</strong> : Bool
 
-        <a class="method-permalink" href="#done?-instance-method">#</a>
+        <a class="method-permalink" href="#done?:Bool-instance-method">#</a>
       </div>
       
       <br/>
@@ -350,12 +350,12 @@
       </div>
     </div>
   
-    <div class="entry-detail" id="elapsed-instance-method">
+    <div class="entry-detail" id="elapsed:String-instance-method">
       <div class="signature">
         
-        def <strong>elapsed</strong>
+        def <strong>elapsed</strong> : String
 
-        <a class="method-permalink" href="#elapsed-instance-method">#</a>
+        <a class="method-permalink" href="#elapsed:String-instance-method">#</a>
       </div>
       
       <br/>
@@ -364,12 +364,12 @@
       </div>
     </div>
   
-    <div class="entry-detail" id="init-instance-method">
+    <div class="entry-detail" id="init:Nil-instance-method">
       <div class="signature">
         
-        def <strong>init</strong>
+        def <strong>init</strong> : Nil
 
-        <a class="method-permalink" href="#init-instance-method">#</a>
+        <a class="method-permalink" href="#init:Nil-instance-method">#</a>
       </div>
       
       <br/>
@@ -378,12 +378,12 @@
       </div>
     </div>
   
-    <div class="entry-detail" id="reset-instance-method">
+    <div class="entry-detail" id="reset:Nil-instance-method">
       <div class="signature">
         
-        def <strong>reset</strong>
+        def <strong>reset</strong> : Nil
 
-        <a class="method-permalink" href="#reset-instance-method">#</a>
+        <a class="method-permalink" href="#reset:Nil-instance-method">#</a>
       </div>
       
       <br/>
@@ -392,12 +392,12 @@
       </div>
     </div>
   
-    <div class="entry-detail" id="set(step:Number)-instance-method">
+    <div class="entry-detail" id="set(step:Num):Nil-instance-method">
       <div class="signature">
         
-        def <strong>set</strong>(step : Number)
+        def <strong>set</strong>(step : <a href="Progress/Num.html">Num</a>) : Nil
 
-        <a class="method-permalink" href="#set(step:Number)-instance-method">#</a>
+        <a class="method-permalink" href="#set(step:Num):Nil-instance-method">#</a>
       </div>
       
       <br/>
@@ -406,12 +406,12 @@
       </div>
     </div>
   
-    <div class="entry-detail" id="started?-instance-method">
+    <div class="entry-detail" id="started?:Bool-instance-method">
       <div class="signature">
         
-        def <strong>started?</strong>
+        def <strong>started?</strong> : Bool
 
-        <a class="method-permalink" href="#started?-instance-method">#</a>
+        <a class="method-permalink" href="#started?:Bool-instance-method">#</a>
       </div>
       
       <br/>
@@ -420,12 +420,12 @@
       </div>
     </div>
   
-    <div class="entry-detail" id="tick(step:Number)-instance-method">
+    <div class="entry-detail" id="tick(step:Num=1_u64):Nil-instance-method">
       <div class="signature">
         
-        def <strong>tick</strong>(step : Number)
+        def <strong>tick</strong>(step : <a href="Progress/Num.html">Num</a> = <span class="n">1_u64</span>) : Nil
 
-        <a class="method-permalink" href="#tick(step:Number)-instance-method">#</a>
+        <a class="method-permalink" href="#tick(step:Num=1_u64):Nil-instance-method">#</a>
       </div>
       
       <br/>
