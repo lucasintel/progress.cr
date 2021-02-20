@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.35.1">
+<meta name="crystal_docs.project_version" content="main-dev">
+<meta name="crystal_docs.project_name" content="Progress">
+
+
+    <link rel="canonical" href="https://absolab.xyz/progress.cr/Progress.html">
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/doc.js"></script>
+
+  <meta name="repository-name" content="Progress">
+  <title>Progress - Progress main-dev</title>
+  <script type="text/javascript">
+    CrystalDocs.base_path = "";
+  </script>
+</head>
+<body>
+
+<svg class="hidden">
+  <symbol id="octicon-link" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path>
+  </symbol>
+</svg>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false" aria-label="Search">
+    </div>
+
+    <div class="project-summary">
+      <h1 class="project-name">
+        <a href="index.html">
+          Progress
+        </a>
+      </h1>
+
+      <span class="project-version">
+        main-dev
+      </span>
+    </div>
+  </div>
+
+  <div class="search-results hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class="parent open current" data-id="Progress/Progress" data-name="progress">
+      <a href="Progress.html">Progress</a>
+      
+        <ul>
+  
+  <li class=" " data-id="Progress/Progress/OverflowError" data-name="progress::overflowerror">
+      <a href="Progress/OverflowError.html">OverflowError</a>
+      
+    </li>
+  
+</ul>
+
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> Progress
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="Progress.html">Progress</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>
+    <a id="defined-in" class="anchor" href="#defined-in">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Defined in:
+  </h2>
+  
+
+
+
+  
+    <h2>
+      <a id="constant-summary" class="anchor" href="#constant-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+      Constant Summary
+    </h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="CARRIAGE_RETURN">
+        <strong>CARRIAGE_RETURN</strong> = <code><span class="s">&#39;\r&#39;</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="DEFAULT_TEMPLATE">
+        <strong>DEFAULT_TEMPLATE</strong> = <code><span class="s">&quot; + {label} {bar} {step} {percent} [{elapsed}]&quot;</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="EMPTY_CHAR">
+        <strong>EMPTY_CHAR</strong> = <code><span class="s">&quot; &quot;</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="FILLED_CHAR">
+        <strong>FILLED_CHAR</strong> = <code><span class="s">&quot;=&quot;</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="GiB">
+        <strong>GiB</strong> = <code><span class="n">1024</span> <span class="o">*</span> <span class="t">MiB</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="KiB">
+        <strong>KiB</strong> = <code><span class="n">1024</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="LEFT_BORDER_CHAR">
+        <strong>LEFT_BORDER_CHAR</strong> = <code><span class="s">&quot;[&quot;</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="MiB">
+        <strong>MiB</strong> = <code><span class="n">1024</span> <span class="o">*</span> <span class="t">KiB</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="NEW_LINE">
+        <strong>NEW_LINE</strong> = <code><span class="s">&#39;\n&#39;</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="PERCENT_MASK">
+        <strong>PERCENT_MASK</strong> = <code><span class="s">&quot;%4.f%%&quot;</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="RIGHT_BORDER_CHAR">
+        <strong>RIGHT_BORDER_CHAR</strong> = <code><span class="s">&quot;]&quot;</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="STEP_MASK">
+        <strong>STEP_MASK</strong> = <code><span class="s">&quot;%5.1f MiB&quot;</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="TEMPLATE_REGEX">
+        <strong>TEMPLATE_REGEX</strong> = <code><span class="s">/{label}|{bar}|{total}|{step}|{percent}|{elapsed}/</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="TOTAL_MASK">
+        <strong>TOTAL_MASK</strong> = <code><span class="s">&quot;%5.1f MiB&quot;</span></code>
+      </dt>
+      
+    
+      <dt class="entry-const" id="VERSION">
+        <strong>VERSION</strong> = <code><span class="s">&quot;0.1.0&quot;</span></code>
+      </dt>
+      
+    
+  </dl>
+
+
+
+  <h2>
+    <a id="constructors" class="anchor" href="#constructors">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructors
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new(width:Number=100,total:Number=100,step:Number=0,left_border_char:String=LEFT_BORDER_CHAR,filled_char:String=FILLED_CHAR,empty_char:String=EMPTY_CHAR,right_border_char:String=RIGHT_BORDER_CHAR,label:String=&quot;&quot;,template:String=DEFAULT_TEMPLATE,total_mask:String=TOTAL_MASK,step_mask:String=STEP_MASK,percent_mask:String=PERCENT_MASK)-class-method" class="signature"><strong>.new</strong>(width : Number = <span class="n">100</span>, total : Number = <span class="n">100</span>, step : Number = <span class="n">0</span>, left_border_char : String = <span class="t">LEFT_BORDER_CHAR</span>, filled_char : String = <span class="t">FILLED_CHAR</span>, empty_char : String = <span class="t">EMPTY_CHAR</span>, right_border_char : String = <span class="t">RIGHT_BORDER_CHAR</span>, label : String = <span class="s">&quot;&quot;</span>, template : String = <span class="t">DEFAULT_TEMPLATE</span>, total_mask : String = <span class="t">TOTAL_MASK</span>, step_mask : String = <span class="t">STEP_MASK</span>, percent_mask : String = <span class="t">PERCENT_MASK</span>)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+  <h2>
+    <a id="instance-method-summary" class="anchor" href="#instance-method-summary">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Summary
+  </h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#done?-instance-method" class="signature"><strong>#done?</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#elapsed-instance-method" class="signature"><strong>#elapsed</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#init-instance-method" class="signature"><strong>#init</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#reset-instance-method" class="signature"><strong>#reset</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#set(step:Number)-instance-method" class="signature"><strong>#set</strong>(step : Number)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#started?-instance-method" class="signature"><strong>#started?</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#tick(step:Number)-instance-method" class="signature"><strong>#tick</strong>(step : Number)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+</div>
+
+
+  <h2>
+    <a id="constructor-detail" class="anchor" href="#constructor-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Constructor Detail
+  </h2>
+  
+    <div class="entry-detail" id="new(width:Number=100,total:Number=100,step:Number=0,left_border_char:String=LEFT_BORDER_CHAR,filled_char:String=FILLED_CHAR,empty_char:String=EMPTY_CHAR,right_border_char:String=RIGHT_BORDER_CHAR,label:String=&quot;&quot;,template:String=DEFAULT_TEMPLATE,total_mask:String=TOTAL_MASK,step_mask:String=STEP_MASK,percent_mask:String=PERCENT_MASK)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(width : Number = <span class="n">100</span>, total : Number = <span class="n">100</span>, step : Number = <span class="n">0</span>, left_border_char : String = <span class="t">LEFT_BORDER_CHAR</span>, filled_char : String = <span class="t">FILLED_CHAR</span>, empty_char : String = <span class="t">EMPTY_CHAR</span>, right_border_char : String = <span class="t">RIGHT_BORDER_CHAR</span>, label : String = <span class="s">&quot;&quot;</span>, template : String = <span class="t">DEFAULT_TEMPLATE</span>, total_mask : String = <span class="t">TOTAL_MASK</span>, step_mask : String = <span class="t">STEP_MASK</span>, percent_mask : String = <span class="t">PERCENT_MASK</span>)
+
+        <a class="method-permalink" href="#new(width:Number=100,total:Number=100,step:Number=0,left_border_char:String=LEFT_BORDER_CHAR,filled_char:String=FILLED_CHAR,empty_char:String=EMPTY_CHAR,right_border_char:String=RIGHT_BORDER_CHAR,label:String=&quot;&quot;,template:String=DEFAULT_TEMPLATE,total_mask:String=TOTAL_MASK,step_mask:String=STEP_MASK,percent_mask:String=PERCENT_MASK)-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+
+
+
+
+
+  <h2>
+    <a id="instance-method-detail" class="anchor" href="#instance-method-detail">
+  <svg class="octicon-link" aria-hidden="true">
+    <use href="#octicon-link"/>
+  </svg>
+</a>
+    Instance Method Detail
+  </h2>
+  
+    <div class="entry-detail" id="done?-instance-method">
+      <div class="signature">
+        
+        def <strong>done?</strong>
+
+        <a class="method-permalink" href="#done?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="elapsed-instance-method">
+      <div class="signature">
+        
+        def <strong>elapsed</strong>
+
+        <a class="method-permalink" href="#elapsed-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="init-instance-method">
+      <div class="signature">
+        
+        def <strong>init</strong>
+
+        <a class="method-permalink" href="#init-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="reset-instance-method">
+      <div class="signature">
+        
+        def <strong>reset</strong>
+
+        <a class="method-permalink" href="#reset-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="set(step:Number)-instance-method">
+      <div class="signature">
+        
+        def <strong>set</strong>(step : Number)
+
+        <a class="method-permalink" href="#set(step:Number)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="started?-instance-method">
+      <div class="signature">
+        
+        def <strong>started?</strong>
+
+        <a class="method-permalink" href="#started?-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="tick(step:Number)-instance-method">
+      <div class="signature">
+        
+        def <strong>tick</strong>(step : Number)
+
+        <a class="method-permalink" href="#tick(step:Number)-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>
