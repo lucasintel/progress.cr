@@ -30,34 +30,35 @@ class Progress
     @template : String = DEFAULT_TEMPLATE,
     @total_mask : String = TOTAL_MASK,
     @step_mask : String = STEP_MASK,
-    @percent_mask : String = PERCENT_MASK
+    @percent_mask : String = PERCENT_MASK,
+    @stream = STDOUT
   )
     @start_at = Time.monotonic
     @range = 0..@total
   end
 
-  def init
+  def init : Nil
     @step = 0
     render
   end
 
-  def reset
+  def reset : Nil
     init
   end
 
-  def tick(step : Number)
+  def tick(step : Number) : Nil
     @step += step
     render
   end
 
-  def set(step : Number)
+  def set(step : Number) : Nil
     raise OverflowError.new unless @range.includes?(step)
 
     @step = step
     render
   end
 
-  def elapsed
+  def elapsed : String
     time = Time.monotonic - @start_at
 
     String.build do |str|
@@ -74,15 +75,15 @@ class Progress
     end
   end
 
-  def started?
+  def started? : Bool
     @step > 0
   end
 
-  def done?
+  def done? : Bool
     @total == @step
   end
 
-  private def render
+  private def render : Nil
     percent = @step / @total
     filled_int = (@width * percent).to_i
     empty_int = (@width - filled_int).to_i
@@ -109,9 +110,9 @@ class Progress
       }
     )
 
-    STDOUT.flush
-    STDOUT.print(CARRIAGE_RETURN, computed)
-    STDOUT.flush
-    STDOUT.print(NEW_LINE) if done?
+    @stream.flush
+    @stream.print(CARRIAGE_RETURN, computed)
+    @stream.flush
+    @stream.print(NEW_LINE) if done?
   end
 end
