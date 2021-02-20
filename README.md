@@ -1,5 +1,9 @@
 # Progress
 
+[![Built with Crystal 0.36.1](https://img.shields.io/badge/Crystal-0.36.1-%23333333)](https://crystal-lang.org/)
+[![GitHub release](https://img.shields.io/github/release/kandayo/progress.cr.svg?label=Release)](https://github.com/kandayo/progress.cr/releases)
+[![Specs](https://github.com/kandayo/progress.cr/workflows/Specs/badge.svg)](https://github.com/kandayo/progress.cr/actions)
+
 Simple and customizable progress bar for Crystal.
 
 ## Installation
