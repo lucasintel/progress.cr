@@ -236,35 +236,42 @@
       <li class="entry-summary">
         <a href="#done?:Bool-instance-method" class="signature"><strong>#done?</strong> : Bool</a>
         
+          <div class="summary"><p>Returns true if the progress bar is done, else false.</p></div>
+        
       </li>
     
       <li class="entry-summary">
-        <a href="#elapsed:String-instance-method" class="signature"><strong>#elapsed</strong> : String</a>
+        <a href="#elapsed_time:String-instance-method" class="signature"><strong>#elapsed_time</strong> : String</a>
+        
+          <div class="summary"><p>Returns the elapsed time since the progress bar was last initialized.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#init:Nil-instance-method" class="signature"><strong>#init</strong> : Nil</a>
         
-      </li>
-    
-      <li class="entry-summary">
-        <a href="#reset:Nil-instance-method" class="signature"><strong>#reset</strong> : Nil</a>
+          <div class="summary"><p>Initializes the timer and render the progress bar.</p></div>
         
       </li>
     
       <li class="entry-summary">
         <a href="#set(step:Num):Nil-instance-method" class="signature"><strong>#set</strong>(step : Num) : Nil</a>
         
+          <div class="summary"><p>Sets the progress bar <em>step</em> directly.</p></div>
+        
       </li>
     
       <li class="entry-summary">
         <a href="#started?:Bool-instance-method" class="signature"><strong>#started?</strong> : Bool</a>
         
+          <div class="summary"><p>Returns true if the progress bar is running, else false.</p></div>
+        
       </li>
     
       <li class="entry-summary">
-        <a href="#tick(step:Num=1_u64):Nil-instance-method" class="signature"><strong>#tick</strong>(step : Num = <span class="n">1_u64</span>) : Nil</a>
+        <a href="#tick(step:Num):Nil-instance-method" class="signature"><strong>#tick</strong>(step : Num) : Nil</a>
+        
+          <div class="summary"><p>Ticks the progress bar by <em>step</em>.</p></div>
         
       </li>
     
@@ -344,19 +351,33 @@
         <a class="method-permalink" href="#done?:Bool-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Returns true if the progress bar is done, else false.</p>
+        </div>
+      
       <br/>
       <div>
         
       </div>
     </div>
   
-    <div class="entry-detail" id="elapsed:String-instance-method">
+    <div class="entry-detail" id="elapsed_time:String-instance-method">
       <div class="signature">
         
-        def <strong>elapsed</strong> : String
+        def <strong>elapsed_time</strong> : String
 
-        <a class="method-permalink" href="#elapsed:String-instance-method">#</a>
+        <a class="method-permalink" href="#elapsed_time:String-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Returns the elapsed time since the progress bar was last initialized.</p>
+
+<pre><code class="language-crystal">progress <span class="o">=</span> <span class="t">Progress</span>.<span class="k">new</span>
+sleep <span class="n">5</span>
+progress.elapsed_time <span class="c"># =&gt; 00:05</span></code></pre>
+        </div>
       
       <br/>
       <div>
@@ -372,19 +393,10 @@
         <a class="method-permalink" href="#init:Nil-instance-method">#</a>
       </div>
       
-      <br/>
-      <div>
-        
-      </div>
-    </div>
-  
-    <div class="entry-detail" id="reset:Nil-instance-method">
-      <div class="signature">
-        
-        def <strong>reset</strong> : Nil
-
-        <a class="method-permalink" href="#reset:Nil-instance-method">#</a>
-      </div>
+        <div class="doc">
+          
+          <p>Initializes the timer and render the progress bar.</p>
+        </div>
       
       <br/>
       <div>
@@ -400,6 +412,16 @@
         <a class="method-permalink" href="#set(step:Num):Nil-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Sets the progress bar <em>step</em> directly. If the value overflows the progress
+bar capacity, the remaining will be ignored.</p>
+
+<pre><code class="language-crystal">progress <span class="o">=</span> <span class="t">Progress</span>.<span class="k">new</span>(total: <span class="n">10</span>)
+progress.set(<span class="n">10</span>)
+progress.done? <span class="c"># =&gt; true</span></code></pre>
+        </div>
+      
       <br/>
       <div>
         
@@ -414,19 +436,35 @@
         <a class="method-permalink" href="#started?:Bool-instance-method">#</a>
       </div>
       
+        <div class="doc">
+          
+          <p>Returns true if the progress bar is running, else false. This method has
+no effect right now, as it always return true.</p>
+        </div>
+      
       <br/>
       <div>
         
       </div>
     </div>
   
-    <div class="entry-detail" id="tick(step:Num=1_u64):Nil-instance-method">
+    <div class="entry-detail" id="tick(step:Num):Nil-instance-method">
       <div class="signature">
         
-        def <strong>tick</strong>(step : <a href="Progress/Num.html">Num</a> = <span class="n">1_u64</span>) : Nil
+        def <strong>tick</strong>(step : <a href="Progress/Num.html">Num</a>) : Nil
 
-        <a class="method-permalink" href="#tick(step:Num=1_u64):Nil-instance-method">#</a>
+        <a class="method-permalink" href="#tick(step:Num):Nil-instance-method">#</a>
       </div>
+      
+        <div class="doc">
+          
+          <p>Ticks the progress bar by <em>step</em>. The step can be either positive or
+negative.</p>
+
+<pre><code class="language-crystal">progress <span class="o">=</span> <span class="t">Progress</span>.<span class="k">new</span>(total: <span class="n">10</span>)
+progress.tick(<span class="n">10</span>)
+progress.done? <span class="c"># =&gt; true</span></code></pre>
+        </div>
       
       <br/>
       <div>
